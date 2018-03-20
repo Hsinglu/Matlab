@@ -1,0 +1,52 @@
+%本代码整理MATLAB的字符串处理
+clc;
+clear;
+
+%MATLAB里面的字符变量、字符数组、字符串是可以通用的
+char = 'h';                                     %定义一个字符变量（会自动转为字符串）
+charArray = ['A', 'E', 'I', 'O', 'U'];  %定义一个字符数组（会自动转为字符串）,等价于定义charArry = 'AEIOU'
+str = 'hello';                                  %定义一个字符串
+strArray = ['hello', 'world', 'MATLAB'];        %等价于定义strArray = 'helloworldMATLAB'
+%   strArray2 = ['hello'; 'world'; 'MATLAB'];    %这种定义方式是错误的
+
+%%
+%字符串的元素的引用
+%字符数组、字符串的元素的引用--和数组的引用相同
+S1 = str(1);             %提取字符串str的第一个元素'h'
+S2 = strArray(8);   %提取字符串strArray的第8个元素'r'
+
+%%
+%字符串处理函数
+
+%长度
+length = length(str);       %返回字符串str的长度
+
+%数值--字符串(数值转换成字符串)
+num = 100.98;
+stringNum = num2str(num);
+
+num2 = 100;
+stringNum2 = num2str(num2);
+
+%字符串--数值(字符串转换成数值)
+string = '100';
+num3 = str2num(string);
+
+%字符串拼接:  strcat
+str1 = 'ABC';
+str2 = 'DEF';
+str3 = strcat(str1, str2);      %拼接完为str3 = 'ABCDEF';
+
+%字符串判断: strcmpi（s1, s2）函数
+% isSame = (str1 == str2);    %因为str1和str2是相同维度，所以返回一个1*3的数组
+% isSame2 = (str1, strArray);         %错误：因为维度不一样不能判断
+isSame2 = strcmpi(str1, strArray);  %返回1表示二者相同，返回0表示二者不同
+
+%字符串切割函数
+subString = strArray(3:5);      %和数组的元素的切割是一样的操作
+
+
+
+
+
+
