@@ -1,0 +1,71 @@
+%本代码讨论符号函数的定义、求导、积分、赋值运算等方法 
+
+%%
+%----------------定义符号变量(syms)-------------------------
+clear;
+clc;
+
+%%
+%方法一
+syms x;
+syms y;
+syms z w;   %注意这里有空格，但是不能有逗号
+
+%%
+%方法二
+% x = sym('x');
+% y = sym('y');
+
+%%
+%-----------定义符号函数----------------------------------
+f = x * x + 2 * y * y + 3 * z * z + 4 * w * w;
+
+%%
+%对符号函数进行求导
+fx = diff(f, x);
+fy = diff(f, y);
+fz = diff(f, z);
+fw = diff(f, w);
+disp(fx);
+% fprintf('fx = %s\n', fx);
+
+%%
+%对符号函数进行不定积分
+int_fx = int(fx, 'x');  %标明是对x求不定积分，记住要加单引号
+
+%%
+%对符号函数求定积分
+Ding_int_fx = int(fx, 0, 5);        %这一步做完之后，Ding_int_fx是一个符号变量
+Ding_int_fx2 = int(fx, 0, inf);        %这一步做完之后，Ding_int_fx是一个符号变量
+Ding_int_fx = eval(Ding_int_fx);    %需要用eval函数提取她的数值，转换成数值类型
+Ding_int_fx2 = eval(Ding_int_fx2);    %需要用eval函数提取她的数值，转换成数值类型
+fprintf('fx的定积分为（上限为5，下限为0）：%6d\n', Ding_int_fx);
+
+%%
+%对变量进行赋值并运算
+x = 3;
+y = 4;
+z = 5;
+w = 6;
+value_f = eval(f);
+value_fx = eval(fx);
+fprintf('value_f = %d\n', value_f);
+fprintf('value_fx = %d\n', value_fx);
+
+
+%%
+%或者使用subs函数
+syms a b c d;
+F = a * x^2 + b * d + c;
+findsym(F)          %这个函数是找到符号函数里面的自由变量
+
+syms a b;
+F = a * b^2 + 3 * b + 4;
+f1 = subs(F, a, 2); %这一步可以求出当a = 2的时候的函数F的表达式
+f1
+
+value = subs(f1, b, 5); %但是注意， value还是个符号变量，需要用eval函数转换成数值变量才能在后面的程序里面进行使用
+x_value = eval(subs(f1, b, 5))
+value
+
+
