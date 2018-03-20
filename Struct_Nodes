@@ -1,0 +1,21 @@
+%本代码为结构体类型的定义和使用
+%统一定义方式为：s = sturct('field1',values1,'field2',values2,…)
+%但是不建议用以上方法进行定义
+%一般是直接进行赋值
+student.name = 'Tom';
+student.age = 20;
+student.gender = 'man';
+student.ID = '20120700';
+student.score = [99; 98; 85; 89];
+
+%下面是结构体变量的成员属性的提取
+name = student.name;
+age = student.age;
+gender = student.gender;
+ID = student.ID;
+score1 = student.score(1);
+
+
+
+
+
